@@ -1,4 +1,4 @@
-name: Build zlib
+name: Build lz4
 
 on:
   workflow_call:
@@ -29,20 +29,20 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Cache lz4-${{ inputs.version }}
-      id: cache-zlib
+      id: cache-lz4
       uses: actions/cache@v4
       with:
         path: runtimes
-        key: zlib-${{ inputs.version }}-${{ matrix.compiler.rid }}
+        key: lz4-${{ inputs.version }}-${{ matrix.compiler.rid }}
 
     - name: Download and extract lz4-${{ inputs.version }}
-      if: steps.cache-zlib.outputs.cache-hit != 'true'
+      if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
         wget https://github.com/lz4/lz4/releases/download/v${{ inputs.version }}/lz4-${{ inputs.version }}.tar.gz
         tar -xzvf lz4-${{ inputs.version }}.tar.gz
 
     - name: Build lz4-${{ inputs.version }}
-      if: steps.cache-zlib.outputs.cache-hit != 'true'
+      if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
         make
         cp build/${{ matrix.compiler.target }}/${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
