@@ -48,7 +48,7 @@ jobs:
         cd lz4-${{ inputs.version }}/lib
         make liblz4 BUILD_SHARED=no
         mkdir -p ../../runtimes/${{ matrix.compiler.rid }}/native
-        cp . ../../runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
+        cp -r . ../../runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
 
     - name: Upload lz4-${{ inputs.version }}
       uses: actions/upload-artifact@v4
