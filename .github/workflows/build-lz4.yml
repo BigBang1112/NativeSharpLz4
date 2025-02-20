@@ -1,0 +1,54 @@
+name: Build zlib
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build lz4
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        compiler:
+        - {target: windows-static-x86, src: lz4.dll, dst: lz4.dll, rid: win-x86}
+        - {target: windows-static-x64, src: lz4.dll, dst: lz4.dll, rid: win-x64}
+        - {target: linux-x64, src: lz4.so, dst: lz4.so, rid: linux-x64}
+        - {target: linux-armv6, src: lz4.so, dst: lz4.so, rid: linux-arm}
+        - {target: linux-arm64, src: lz4.so, dst: lz4.so, rid: linux-arm64}
+        - {target: "web-wasm:20241110-43b2dd1", src: lz4.a, dst: lz4.a, rid: browser-wasm}
+
+    container:
+      image: dockcross/${{ matrix.compiler.target }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Cache lz4-${{ inputs.version }}
+      id: cache-zlib
+      uses: actions/cache@v4
+      with:
+        path: runtimes
+        key: zlib-${{ inputs.version }}-${{ matrix.compiler.rid }}
+
+    - name: Download and extract lz4-${{ inputs.version }}
+      if: steps.cache-zlib.outputs.cache-hit != 'true'
+      run: |
+        wget https://github.com/lz4/lz4/releases/download/v${{ inputs.version }}/lz4-${{ inputs.version }}.tar.gz
+        tar -xzvf lz4-${{ inputs.version }}.tar.gz
+
+    - name: Build lz4-${{ inputs.version }}
+      if: steps.cache-zlib.outputs.cache-hit != 'true'
+      run: |
+        make
+        cp build/${{ matrix.compiler.target }}/${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
+
+    - name: Upload lz4-${{ inputs.version }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: lz4-${{ inputs.version }}-${{ matrix.compiler.rid }}
+        path: runtimes
