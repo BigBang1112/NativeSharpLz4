@@ -45,10 +45,10 @@ jobs:
     - name: Build lz4-${{ inputs.version }}
       if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
-        cd lz4-${{ inputs.version }}
+        cd lz4-${{ inputs.version }}/lib
         make liblz4
         mkdir -p ../runtimes/${{ matrix.compiler.rid }}/native
-        cp lib/${{ matrix.compiler.src }} ../runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
+        cp ${{ matrix.compiler.src }} ../runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
 
     - name: Upload lz4-${{ inputs.version }}
       uses: actions/upload-artifact@v4
