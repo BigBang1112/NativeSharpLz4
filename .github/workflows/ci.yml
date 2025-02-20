@@ -17,5 +17,5 @@ jobs:
     name: Build lz4 ${{ vars.LZ4_VERSION }} package + test
     uses: ./.github/workflows/build-package.yml
     with:
-      zlib_version: ${{ vars.LZ4_VERSION }}
+      version: ${{ vars.LZ4_VERSION }}
       runs-on: "['ubuntu-latest', 'windows-latest']"
