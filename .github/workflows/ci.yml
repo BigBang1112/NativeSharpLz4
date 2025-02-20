@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+    paths: [ ".github/workflows/*.yml", "NativeSharpLz4/**", "NativeSharpLz4.Tests/**", "NativeSharpLz4.sln" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+    paths: [ ".github/workflows/*.yml", "NativeSharpLz4/**", "NativeSharpLz4.Tests/**", "NativeSharpLz4.sln" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build lz4 ${{ vars.LZ4_VERSION }} package + test
+    uses: ./.github/workflows/build-package.yml
+    with:
+      zlib_version: ${{ vars.LZ4_VERSION }}
+      runs-on: "['ubuntu-latest', 'windows-latest']"
