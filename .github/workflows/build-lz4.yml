@@ -15,8 +15,8 @@ jobs:
     strategy:
       matrix:
         compiler:
-        - {target: windows-static-x86, src: liblz4.dll, dst: lz4.dll, rid: win-x86}
-        - {target: windows-static-x64, src: liblz4.dll, dst: lz4.dll, rid: win-x64}
+        - {target: windows-static-x86, src: lz4.dll, dst: lz4.dll, rid: win-x86}
+        - {target: windows-static-x64, src: lz4.dll, dst: lz4.dll, rid: win-x64}
         - {target: linux-x64, src: liblz4.so, dst: lz4.so, rid: linux-x64}
         - {target: linux-armv6, src: liblz4.so, dst: lz4.so, rid: linux-arm}
         - {target: linux-arm64, src: liblz4.so, dst: lz4.so, rid: linux-arm64}
