@@ -46,7 +46,7 @@ jobs:
       if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
         cd lz4-${{ inputs.version }}/lib
-        make liblz4
+        make
         mkdir -p ../../runtimes/${{ matrix.compiler.rid }}/native
         cp -r . ../../runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
 
