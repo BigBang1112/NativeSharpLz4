@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        fail-fast: false
         compiler:
         - {target: windows-static-x86, src: liblz4.dll, dst: liblz4.dll, rid: win-x86}
         - {target: windows-static-x64, src: liblz4.dll, dst: liblz4.dll, rid: win-x64}
