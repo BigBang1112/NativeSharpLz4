@@ -44,6 +44,7 @@ jobs:
     - name: Build lz4-${{ inputs.version }}
       if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
+        cd lz4-${{ inputs.version }}
         make
         cp build/${{ matrix.compiler.target }}/${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
 
