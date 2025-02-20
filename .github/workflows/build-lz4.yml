@@ -46,7 +46,7 @@ jobs:
       run: |
         cd lz4-${{ inputs.version }}
         make
-        cp build/${{ matrix.compiler.target }}/${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
+        cp lib/${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
 
     - name: Upload lz4-${{ inputs.version }}
       uses: actions/upload-artifact@v4
