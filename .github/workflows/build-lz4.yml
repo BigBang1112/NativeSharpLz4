@@ -46,7 +46,7 @@ jobs:
       if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
         cd lz4-${{ inputs.version }}/lib
-        if [[ "${{ matrix.compiler.target }}" == windows-* ]]; then
+        if echo "${{ matrix.compiler.target }}" | grep -q '^windows-'; then
           make liblz4 BUILD_STATIC=no CC=x86_64-w64-mingw32-gcc DLLTOOL=x86_64-w64-mingw32-dlltool OS=Windows_NT
         else
           make
