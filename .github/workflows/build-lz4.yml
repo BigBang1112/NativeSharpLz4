@@ -51,12 +51,10 @@ jobs:
         else
           make
         fi
-        mkdir -p runtimes/${{ matrix.compiler.rid }}/native
-        cp ${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
 
     - name: Upload lz4-${{ inputs.version }}
       uses: actions/upload-artifact@v4
       with:
         name: lz4-${{ inputs.version }}-${{ matrix.compiler.rid }}
-        path: runtimes
+        path: lz4-${{ inputs.version }}
         if-no-files-found: error
