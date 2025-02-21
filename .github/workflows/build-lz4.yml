@@ -45,7 +45,7 @@ jobs:
     - name: Build lz4-${{ inputs.version }}
       if: steps.cache-lz4.outputs.cache-hit != 'true'
       run: |
-        cmake -B build/${{ matrix.compiler.target }} -S lz4-${{ inputs.version }}/ -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON
+        cmake -B build/${{ matrix.compiler.target }} -S lz4-${{ inputs.version }}/lib/ -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON
         ninja -C build/${{ matrix.compiler.target }}
         mkdir -p runtimes/${{ matrix.compiler.rid }}/native
         cp build/${{ matrix.compiler.target }}/${{ matrix.compiler.src }} runtimes/${{ matrix.compiler.rid }}/native/${{ matrix.compiler.dst }}
