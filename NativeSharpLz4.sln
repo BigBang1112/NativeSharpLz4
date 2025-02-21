@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35506.116 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeSharpLz4", "NativeSharpLz4\NativeSharpLz4.csproj", "{D72B4716-A5F3-464C-A9C8-9205455CCB90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeSharpLz4.Tests", "NativeSharpLz4.Tests\NativeSharpLz4.Tests.csproj", "{C738F8BC-237B-4E32-B293-B9177497828B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D72B4716-A5F3-464C-A9C8-9205455CCB90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D72B4716-A5F3-464C-A9C8-9205455CCB90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D72B4716-A5F3-464C-A9C8-9205455CCB90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C738F8BC-237B-4E32-B293-B9177497828B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C738F8BC-237B-4E32-B293-B9177497828B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C738F8BC-237B-4E32-B293-B9177497828B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C738F8BC-237B-4E32-B293-B9177497828B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
