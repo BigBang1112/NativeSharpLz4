@@ -43,9 +43,9 @@
         <None Include="..\runtimes\**" Pack="True" PackagePath="runtimes\" />
         <!--<None Include="build\NativeSharpLz4.targets" Pack="true" PackagePath="build\" />-->
     </ItemGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="Zomp.SyncMethodGenerator" Version="1.4.15">
+        <PackageReference Include="Zomp.SyncMethodGenerator" Version="1.4.20">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

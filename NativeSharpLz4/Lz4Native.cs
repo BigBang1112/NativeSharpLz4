@@ -16,6 +16,14 @@ internal sealed partial class Lz4Native
 
 #if NET8_0_OR_GREATER
     [LibraryImport(Library)]
+    public static partial int LZ4_freeStream(IntPtr stream);
+#else
+    [DllImport(Library)]
+    public static extern int LZ4_freeStream(IntPtr stream);
+#endif
+
+#if NET8_0_OR_GREATER
+    [LibraryImport(Library)]
     public static partial int LZ4_freeStreamDecode(IntPtr stream);
 #else
     [DllImport(Library)]

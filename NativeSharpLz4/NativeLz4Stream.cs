@@ -39,9 +39,9 @@ public class NativeLz4Stream : Stream
 
     public override bool CanWrite => mode == CompressionMode.Compress;
 
-    public override long Length => throw new NotImplementedException();
+    public override long Length => throw new NotSupportedException();
 
-    public override long Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public override long Position { get => throw new NotSupportedException(); set => throw new NotSupportedException(); }
 
     public override void Flush()
     {
@@ -51,7 +51,9 @@ public class NativeLz4Stream : Stream
     public override int Read(byte[] buffer, int offset, int count)
     {
         if (mode != CompressionMode.Decompress)
+        {
             throw new NotSupportedException();
+        }
 
         // read from stream and decompress
 
@@ -59,14 +61,18 @@ public class NativeLz4Stream : Stream
         var read = stream.Read(compressedBuffer, 0, count);
 
         if (read == 0)
+        {
             return 0;
+        }
 
         var decompressedBuffer = new byte[count * 4];
 
         var decompressedSize = Lz4Native.LZ4_decompress_safe_continue(lz4Stream, compressedBuffer, decompressedBuffer, read, decompressedBuffer.Length);
 
         if (decompressedSize < 0)
+        {
             throw new InvalidDataException();
+        }
 
         Array.Copy(decompressedBuffer, 0, buffer, offset, decompressedSize);
 
@@ -94,7 +100,9 @@ public class NativeLz4Stream : Stream
         var compressedSize = Lz4Native.LZ4_compress_fast_continue(lz4Stream, buffer, compressedBuffer, count, compressedBuffer.Length, 1);
 
         if (compressedSize < 0)
+        {
             throw new InvalidDataException();
+        }
 
         stream.Write(compressedBuffer, 0, compressedSize);
     }
@@ -105,8 +113,21 @@ public class NativeLz4Stream : Stream
         {
             if (lz4Stream != IntPtr.Zero)
             {
-                Lz4Native.LZ4_freeStreamDecode(lz4Stream);
+                if (mode == CompressionMode.Compress)
+                {
+                    Lz4Native.LZ4_freeStream(lz4Stream);
+                }
+                else
+                {
+                    Lz4Native.LZ4_freeStreamDecode(lz4Stream);
+                }
+
                 lz4Stream = IntPtr.Zero;
+            }
+
+            if (!leaveOpen)
+            {
+                stream.Dispose();
             }
         }
         base.Dispose(disposing);
