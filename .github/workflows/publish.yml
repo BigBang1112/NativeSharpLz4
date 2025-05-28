@@ -38,7 +38,9 @@ jobs:
       upload_package: true
   
   publish:
-    needs: build-and-test
+    needs:
+      - prepare-description
+      - build-and-test
 
     name: Publish package
     runs-on: ubuntu-latest
