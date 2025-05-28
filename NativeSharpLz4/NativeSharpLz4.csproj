@@ -3,7 +3,7 @@
         <PackageId>NativeSharpLz4</PackageId>
         <Authors>BigBang1112</Authors>
         <Description>Wrap of the lz4 library with NativeAOT and transparent C library build.</Description>
-        <Copyright>Copyright (c) 2024 Petr Pivoňka</Copyright>
+        <Copyright>Copyright (c) 2025 Petr Pivoňka</Copyright>
         <PackageProjectUrl>https://github.com/BigBang1112/NativeSharpLz4</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>lz4, nativesharplz4, nativeaot, c</PackageTags>
@@ -19,7 +19,7 @@
     <PropertyGroup>
         <TargetFrameworks>net9.0;net8.0;net6.0;netstandard2.0</TargetFrameworks>
         <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;browser-wasm</RuntimeIdentifiers>
-        <LangVersion>12</LangVersion>
+        <LangVersion>13</LangVersion>
 
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
@@ -39,15 +39,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath="\" />
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
         <None Include="..\runtimes\**" Pack="True" PackagePath="runtimes\" />
-        <!--<None Include="build\NativeSharpLz4.targets" Pack="true" PackagePath="build\" />-->
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Zomp.SyncMethodGenerator" Version="1.4.20">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
+        <None Include="build\NativeSharpLz4.targets" Pack="true" PackagePath="build\" />
     </ItemGroup>
 </Project>
