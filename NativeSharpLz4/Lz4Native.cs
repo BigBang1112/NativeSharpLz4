@@ -32,7 +32,7 @@ internal sealed partial class Lz4Native
 
 #if NET8_0_OR_GREATER
     [LibraryImport(Library)]
-    public static partial int LZ4_setStreamDecode(IntPtr stream, byte[] dictionary, int dictSize);
+    public static partial int LZ4_setStreamDecode(IntPtr stream, [In] byte[] dictionary, int dictSize);
 #else
     [DllImport(Library)]
     public static extern int LZ4_setStreamDecode(IntPtr stream, byte[] dictionary, int dictSize);
@@ -40,7 +40,7 @@ internal sealed partial class Lz4Native
 
 #if NET8_0_OR_GREATER
     [LibraryImport(Library)]
-    public static partial int LZ4_decompress_safe_continue(IntPtr stream, byte[] src, byte[] dst, int compressedSize, int maxDecompressedSize);
+    public static partial int LZ4_decompress_safe_continue(IntPtr stream, [In] byte[] src, [Out] byte[] dst, int compressedSize, int maxDecompressedSize);
 #else
     [DllImport(Library)]
     public static extern int LZ4_decompress_safe_continue(IntPtr stream, byte[] src, byte[] dst, int compressedSize, int maxDecompressedSize);
@@ -56,7 +56,7 @@ internal sealed partial class Lz4Native
 
 #if NET8_0_OR_GREATER
     [LibraryImport(Library)]
-    public static partial int LZ4_compress_fast_continue(IntPtr stream, byte[] src, byte[] dst, int srcSize, int dstCapacity, int acceleration);
+    public static partial int LZ4_compress_fast_continue(IntPtr stream, [In] byte[] src, [Out] byte[] dst, int srcSize, int dstCapacity, int acceleration);
 #else
     [DllImport(Library)]
     public static extern int LZ4_compress_fast_continue(IntPtr stream, byte[] src, byte[] dst, int srcSize, int dstCapacity, int acceleration);

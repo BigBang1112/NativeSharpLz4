@@ -21,7 +21,7 @@ jobs:
         - {target: linux-x64, src: liblz4.so, dst: liblz4.so, rid: linux-x64}
         - {target: linux-armv6, src: liblz4.so, dst: liblz4.so, rid: linux-arm}
         - {target: linux-arm64, src: liblz4.so, dst: liblz4.so, rid: linux-arm64}
-        - {target: "web-wasm:20241110-43b2dd1", src: liblz4.a, dst: liblz4.a, rid: browser-wasm}
+        - {target: web-wasm, src: liblz4.a, dst: liblz4.a, rid: browser-wasm}
 
     container:
       image: dockcross/${{ matrix.compiler.target }}
