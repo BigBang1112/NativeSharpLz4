@@ -5,3 +5,13 @@
 [![Code Coverage](https://img.shields.io/badge/Code%20Coverage-74%25-success?style=for-the-badge)](https://github.com/BigBang1112/NativeSharpLz4)
 
 A simple lz4 wrapper with NativeAOT support and transparent C lib build.
+
+Current lz4 version: **1.10.0**
+
+Supported runtimes:
+- `win-x64`
+- `win-x86`
+- `linux-x64`
+- `linux-arm`
+- `linux-arm64`
+- `browser-wasm`
