@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NativeSharpLz4.Tests/NativeSharpLz4.Tests.csproj" />
+  <Project Path="NativeSharpLz4/NativeSharpLz4.csproj" />
+</Solution>

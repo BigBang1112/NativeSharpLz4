@@ -3,7 +3,7 @@
         <PackageId>NativeSharpLz4</PackageId>
         <Authors>BigBang1112</Authors>
         <Description>Wrap of the lz4 library with NativeAOT and transparent C library build.</Description>
-        <Copyright>Copyright (c) 2025 Petr Pivoňka</Copyright>
+        <Copyright>Copyright (c) 2026 Petr Pivoňka</Copyright>
         <PackageProjectUrl>https://github.com/BigBang1112/NativeSharpLz4</PackageProjectUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>lz4, nativesharplz4, nativeaot, c</PackageTags>
@@ -13,18 +13,18 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFrameworks>net9.0;net8.0;net6.0;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net10.0;net9.0;net8.0;netstandard2.0</TargetFrameworks>
         <RuntimeIdentifiers>win-x64;win-x86;linux-x64;linux-arm;linux-arm64;browser-wasm</RuntimeIdentifiers>
-        <LangVersion>13</LangVersion>
+        <LangVersion>14</LangVersion>
 
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
-        <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+        <IsTrimmable>true</IsTrimmable>
+        <IsAotCompatible>true</IsAotCompatible>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -41,6 +41,7 @@
     <ItemGroup>
         <None Include="..\README.md" Pack="true" PackagePath="\" />
         <None Include="..\runtimes\**" Pack="True" PackagePath="runtimes\" />
-        <None Include="build\NativeSharpLz4.targets" Pack="true" PackagePath="build\" />
+        <None Include="buildTransitive\NativeSharpLz4.targets" Pack="true" PackagePath="buildTransitive\NativeSharpLz4.targets" />
+        <None Include="buildTransitive\NativeSharpLz4.targets" Pack="true" PackagePath="build\NativeSharpLz4.targets" />
     </ItemGroup>
 </Project>

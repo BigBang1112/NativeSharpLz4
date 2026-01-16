@@ -3,10 +3,10 @@ name: CI
 on:
   push:
     branches: [ "main", "dev" ]
-    paths: [ ".github/workflows/*.yml", "NativeSharpLz4/**", "NativeSharpLz4.Tests/**", "NativeSharpLz4.sln" ]
+    paths: [ ".github/workflows/*.yml", "NativeSharpLz4/**", "NativeSharpLz4.Tests/**", "NativeSharpLz4.slnx" ]
   pull_request:
     branches: [ "main", "dev" ]
-    paths: [ ".github/workflows/*.yml", "NativeSharpLz4/**", "NativeSharpLz4.Tests/**", "NativeSharpLz4.sln" ]
+    paths: [ ".github/workflows/*.yml", "NativeSharpLz4/**", "NativeSharpLz4.Tests/**", "NativeSharpLz4.slnx" ]
   workflow_dispatch:
 
 permissions:
